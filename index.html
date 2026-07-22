@@ -15,7 +15,7 @@
       --text:#0d0f12;
       --muted:#69707c;
       --line:#dde1e6;
-      --accent:#ccff33;
+      --accent:#b9e600;
       --danger:#d92d20;
       --success:#137a3d;
       --warning:#a15c00;
@@ -223,25 +223,6 @@
     }
     .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
     .hero .ghost-btn{background:rgba(255,255,255,.13);color:#fff}
-    .hero-feature-chips{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-    .hero-chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      min-height:38px;
-      padding:0 13px;
-      border-radius:999px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      font-size:12px;
-      font-weight:850;
-    }
 
     .trust-strip{
       display:grid;
@@ -315,7 +296,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.85));
+      background:linear-gradient(180deg,rgba(10,12,16,.10) 0%,rgba(10,12,16,.18) 35%,rgba(0,0,0,.84) 100%);
     }
     .category-card img{width:100%;height:100%;object-fit:cover;transition:.35s}
     .category-card:hover img{transform:scale(1.05)}
@@ -357,8 +338,47 @@
       position:relative;
     }
     .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-    .product-image{aspect-ratio:1/1;background:#eceff2;position:relative;overflow:hidden}
-    .product-image img{width:100%;height:100%;object-fit:cover;transition:.35s}
+    .product-image{
+      aspect-ratio:1/1;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(255,255,255,.98) 0%, rgba(248,250,252,.96) 20%, rgba(233,237,242,.94) 48%, rgba(218,224,231,.96) 100%),
+        linear-gradient(180deg, rgba(255,255,255,.0) 0 74%, rgba(188,198,209,.38) 74%, rgba(180,190,202,.58) 75%, rgba(226,231,237,.92) 100%);
+      position:relative;
+      overflow:hidden;
+      padding:0;
+    }
+    .product-image::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, rgba(185,230,0,.08) 0%, rgba(185,230,0,0) 28%),
+        linear-gradient(0deg, rgba(255,255,255,0) 0 80%, rgba(255,255,255,.44) 100%);
+      pointer-events:none;
+    }
+    .product-image::after{
+      content:"";
+      position:absolute;
+      left:12%;
+      right:12%;
+      bottom:18px;
+      height:18px;
+      background:radial-gradient(ellipse at center, rgba(0,0,0,.16) 0%, rgba(0,0,0,.06) 50%, rgba(0,0,0,0) 82%);
+      filter:blur(6px);
+      pointer-events:none;
+    }
+    .product-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      transition:.35s;
+      transform:none;
+      filter:none;
+      border-radius:0;
+      position:relative;
+      z-index:1;
+    }
     .product-card:hover .product-image img{transform:scale(1.035)}
     .badge-row{position:absolute;top:13px;left:13px;right:13px;display:flex;justify-content:space-between;gap:8px}
     .badge{
@@ -373,9 +393,9 @@
       text-transform:uppercase;
     }
     .badge.sale{background:var(--accent);color:#0d0f12}
-    .product-info{padding:17px}
+    .product-info{padding:15px 16px 17px}
     .product-meta{color:var(--muted);font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
-    .product-title{font-size:18px;line-height:1.2;min-height:44px;margin-top:7px}
+    .product-title{font-size:17px;line-height:1.2;min-height:40px;margin-top:7px}
     .product-price{display:flex;align-items:center;gap:9px;margin:12px 0 4px;font-size:20px;font-weight:950}
     .old-price{color:#9ca3af;text-decoration:line-through;font-size:14px;font-weight:700}
     .installments{font-size:12px;color:var(--success);font-weight:800}
@@ -467,7 +487,17 @@
     .modal-head{display:flex;justify-content:space-between;align-items:center;padding:21px 24px;border-bottom:1px solid var(--line)}
     .modal-body{padding:24px}
     .product-detail{display:grid;grid-template-columns:1.05fr .95fr;gap:26px}
-    .detail-image{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;background:#eee}
+    .detail-image{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:contain;
+      border-radius:20px;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(255,255,255,.98) 0%, rgba(248,250,252,.96) 22%, rgba(233,237,242,.94) 50%, rgba(218,224,231,.96) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0) 0 74%, rgba(188,198,209,.38) 74%, rgba(180,190,202,.58) 75%, rgba(226,231,237,.92) 100%);
+      padding:20px;
+      filter:drop-shadow(0 12px 22px rgba(0,0,0,.08));
+    }
     .detail-title{font-size:34px;line-height:1;letter-spacing:-.045em;margin:8px 0 12px}
     .detail-description{color:var(--muted);margin:14px 0 20px}
     .option-label{display:block;font-size:13px;font-weight:900;margin:16px 0 9px}
@@ -507,7 +537,14 @@
       height:130px;border:1px dashed #adb4bd;border-radius:13px;display:grid;place-items:center;
       background:white;overflow:hidden;color:var(--muted);font-size:12px;text-align:center;padding:8px
     }
-    .variant-preview img{width:100%;height:100%;object-fit:cover}
+    .variant-preview img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(255,255,255,.98) 0%, rgba(245,248,251,.96) 30%, rgba(230,235,241,.96) 100%);
+      padding:8px;
+    }
     .variant-file{font-size:12px;padding:9px;min-height:auto}
 
     .admin-products{display:grid;gap:11px}
@@ -515,7 +552,13 @@
       display:grid;grid-template-columns:72px 1fr auto;gap:13px;align-items:center;
       border:1px solid var(--line);border-radius:16px;padding:11px
     }
-    .admin-product img{width:72px;height:72px;border-radius:12px;object-fit:cover;background:#eee}
+    .admin-product img{
+      width:72px;height:72px;border-radius:12px;
+      object-fit:contain;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(255,255,255,.98) 0%, rgba(245,248,251,.96) 30%, rgba(230,235,241,.96) 100%);
+      padding:6px;
+    }
     .admin-product h4{font-size:15px}
     .admin-product p{font-size:12px;color:var(--muted)}
     .admin-actions{display:flex;gap:7px}
@@ -559,8 +602,6 @@
       .hero h1{font-size:42px}
       .hero p{font-size:15px;margin:16px 0 20px}
       .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
-      .hero-feature-chips{gap:8px}
-      .hero-chip{font-size:11px;min-height:34px;padding:0 11px}
       .trust-strip,.product-grid,.category-grid,.catalog-toolbar{grid-template-columns:1fr}
       .home-featured .product-grid{
         display:flex;
@@ -593,7 +634,7 @@
 </head>
 
 <body>
-  <div class="topbar">ENVÍOS A TODO EL PAÍS · MERCADO PAGO · ATENCIÓN POR WHATSAPP</div>
+  <div class="topbar">CLUBES · SELECCIONES · ENTRENAMIENTO · MYSTERY BOX</div>
 
   <header>
     <div class="container header-inner">
@@ -623,24 +664,20 @@
       <div class="container">
         <div class="hero-card">
           <div class="hero-content">
-            <span class="eyebrow">Indumentaria deportiva y camisetas</span>
-            <h1>Camisetas e indumentaria para vivir el deporte.</h1>
-            <p>Encontrá camisetas de clubes y selecciones, conjuntos de entrenamiento, buzos, camperas, shorts, accesorios y Mystery Box. Elegí producto, talle y color directamente desde el catálogo.</p>
+            <span class="eyebrow">Sportiva</span>
+            <h1>Camisetas e indumentaria deportiva</h1>
+            <p>Clubes, selecciones, entrenamiento y Mystery Box. Elegí producto, talle y color directamente desde el catálogo.</p>
             <div class="hero-actions">
               <button class="secondary-btn" onclick="showView('catalog')">Ver catálogo</button>
               <button class="ghost-btn" onclick="openDirectWhatsapp()">Atención al cliente</button>
             </div>
-            <div class="hero-feature-chips">
-              <span class="hero-chip">⚡ Nuevos ingresos</span>
-              <span class="hero-chip">💳 Mercado Pago</span>
-              <span class="hero-chip">🚚 Envíos a todo el país</span>
-            </div>
+
           </div>
         </div>
 
         <div class="trust-strip">
           <div class="trust-item"><span class="trust-icon">🚚</span><div><strong>Envíos nacionales</strong><span>Consultá costo y demora</span></div></div>
-          <div class="trust-item"><span class="trust-icon">📏</span><div><strong>Referencia de talles</strong><span>Revisala antes de comprar</span></div></div>
+          <div class="trust-item"><span class="trust-icon">📏</span><div><strong>Talles</strong><span>Consultala antes de comprar</span></div></div>
           <div class="trust-item"><span class="trust-icon">💳</span><div><strong>Mercado Pago</strong><span>Pago online disponible</span></div></div>
           <div class="trust-item"><span class="trust-icon">💬</span><div><strong>Atención al cliente</strong><span>Contacto directo por WhatsApp</span></div></div>
         </div>
@@ -755,7 +792,7 @@
           <p>Camisetas, conjuntos, abrigos, shorts, accesorios e indumentaria deportiva. Catálogo actualizado, atención personalizada y envíos a todo el país.</p>
         </div>
         <div><h4>Tienda</h4><div class="footer-links"><a href="#catalogo" onclick="showView('catalog')">Catálogo</a><a href="#novedades" onclick="showView('home')">Equipos</a><a href="#calidad">Calidad</a></div></div>
-        <div><h4>Ayuda</h4><div class="footer-links"><button class="admin-link" onclick="openSizeGuide()">Referencia de talles</button><a id="footerHelpWhatsapp" href="#" target="_blank">Atención al cliente</a></div></div>
+        <div><h4>Ayuda</h4><div class="footer-links"><button class="admin-link" onclick="openSizeGuide()">Talles</button><a id="footerHelpWhatsapp" href="#" target="_blank">Atención al cliente</a></div></div>
         <div><h4>Contacto</h4><div class="footer-links"><a id="footerWhatsapp" href="#" target="_blank">WhatsApp</a><a id="instagramLink" href="#" target="_blank">Instagram</a><span>Córdoba, Argentina</span></div></div>
       </div>
       <div class="footer-bottom">
