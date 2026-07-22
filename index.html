@@ -531,7 +531,7 @@
 </head>
 
 <body>
-  <div class="topbar">ENVÍOS A TODO EL PAÍS · CAMBIOS DE TALLE · ATENCIÓN PERSONALIZADA</div>
+  <div class="topbar">ENVÍOS A TODO EL PAÍS · MERCADO PAGO · ATENCIÓN POR WHATSAPP</div>
 
   <header>
     <div class="container header-inner">
@@ -566,16 +566,16 @@
             <p>Camisetas de clubes y selecciones, conjuntos, abrigos, shorts, accesorios y prendas para entrenamiento. Elegí modelo, talle y color desde un catálogo rápido y pensado para comprar desde el celular.</p>
             <div class="hero-actions">
               <button class="secondary-btn" onclick="showView('catalog')">Ver catálogo</button>
-              <button class="ghost-btn" onclick="openDirectWhatsapp()">Consultar por WhatsApp</button>
+              <button class="ghost-btn" onclick="openDirectWhatsapp()">Atención al cliente</button>
             </div>
           </div>
         </div>
 
         <div class="trust-strip">
           <div class="trust-item"><span class="trust-icon">🚚</span><div><strong>Envíos nacionales</strong><span>Consultá costo y demora</span></div></div>
-          <div class="trust-item"><span class="trust-icon">↔</span><div><strong>Cambios de talle</strong><span>Sujeto a disponibilidad</span></div></div>
-          <div class="trust-item"><span class="trust-icon">💳</span><div><strong>Medios de pago</strong><span>Transferencia y Mercado Pago</span></div></div>
-          <div class="trust-item"><span class="trust-icon">💬</span><div><strong>Atención directa</strong><span>Confirmación por WhatsApp</span></div></div>
+          <div class="trust-item"><span class="trust-icon">📏</span><div><strong>Referencia de talles</strong><span>Revisala antes de comprar</span></div></div>
+          <div class="trust-item"><span class="trust-icon">💳</span><div><strong>Mercado Pago</strong><span>Pago online disponible</span></div></div>
+          <div class="trust-item"><span class="trust-icon">💬</span><div><strong>Atención al cliente</strong><span>Contacto directo por WhatsApp</span></div></div>
         </div>
       </div>
     </section>
@@ -687,7 +687,7 @@
           <p>Camisetas, conjuntos, abrigos, shorts, accesorios e indumentaria deportiva. Catálogo actualizado, atención personalizada y envíos a todo el país.</p>
         </div>
         <div><h4>Tienda</h4><div class="footer-links"><a href="#catalogo" onclick="showView('catalog')">Catálogo</a><a href="#novedades" onclick="showView('home')">Equipos</a><a href="#calidad">Calidad</a></div></div>
-        <div><h4>Ayuda</h4><div class="footer-links"><button class="admin-link" onclick="openSizeGuide()">Guía de talles</button><a id="footerHelpWhatsapp" href="#" target="_blank">Cambios y envíos</a></div></div>
+        <div><h4>Ayuda</h4><div class="footer-links"><button class="admin-link" onclick="openSizeGuide()">Referencia de talles</button><a id="footerHelpWhatsapp" href="#" target="_blank">Atención al cliente</a></div></div>
         <div><h4>Contacto</h4><div class="footer-links"><a id="footerWhatsapp" href="#" target="_blank">WhatsApp</a><a id="instagramLink" href="#" target="_blank">Instagram</a><span>Córdoba, Argentina</span></div></div>
       </div>
       <div class="footer-bottom">
@@ -703,9 +703,12 @@
     <div class="drawer-head"><div><p class="overline">Tu compra</p><h2>Carrito</h2></div><button class="close-btn" onclick="closeCart()">×</button></div>
     <div id="cartItems" class="drawer-body"></div>
     <div class="drawer-foot">
-      <div class="shipping-box">El costo de envío y el medio de pago se confirman por WhatsApp antes de abonar.</div>
+      <div id="cartShippingNote" class="shipping-box">El costo de envío se confirma según el código postal. Los productos identificados con envío gratis no suman costo de entrega.</div>
       <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
-      <button class="primary-btn full" onclick="checkoutWhatsapp()">Enviar pedido por WhatsApp</button>
+      <div style="display:grid;gap:9px">
+        <button class="secondary-btn full" onclick="checkoutMercadoPago()">Pagar con Mercado Pago</button>
+        <button class="primary-btn full" onclick="checkoutWhatsapp()">Finalizar por WhatsApp</button>
+      </div>
     </div>
   </aside>
 
@@ -718,14 +721,14 @@
 
   <div id="sizeGuideModal" class="modal-wrap" onclick="closeBackdrop(event,'sizeGuideModal')">
     <div class="modal" style="max-width:650px">
-      <div class="modal-head"><h3>Guía de talles</h3><button class="close-btn" onclick="closeModal('sizeGuideModal')">×</button></div>
+      <div class="modal-head"><h3>Referencia de talles</h3><button class="close-btn" onclick="closeModal('sizeGuideModal')">×</button></div>
       <div class="modal-body">
-        <p class="muted">Medidas orientativas en centímetros. Medí una prenda similar apoyada sobre una superficie plana.</p>
+        <p class="muted">Referencia orientativa en centímetros. Medí una prenda similar apoyada sobre una superficie plana antes de elegir.</p>
         <table class="guide-table">
           <thead><tr><th>Talle</th><th>Ancho de pecho</th><th>Largo</th></tr></thead>
           <tbody><tr><td>S</td><td>48 cm</td><td>68 cm</td></tr><tr><td>M</td><td>51 cm</td><td>71 cm</td></tr><tr><td>L</td><td>54 cm</td><td>74 cm</td></tr><tr><td>XL</td><td>57 cm</td><td>77 cm</td></tr><tr><td>XXL</td><td>60 cm</td><td>80 cm</td></tr></tbody>
         </table>
-        <p class="help" style="margin-top:15px">Reemplazá estas medidas por las de tus proveedores para evitar cambios innecesarios.</p>
+        <p class="help" style="margin-top:15px">Reemplazá estas medidas por las medidas exactas de cada proveedor. No se realizan cambios de talle.</p>
       </div>
     </div>
   </div>
@@ -792,6 +795,13 @@
             <label>Estado<select id="productActive"><option value="true">Publicado</option><option value="false">Oculto</option></select></label>
           </div>
 
+          <label>Envío
+            <select id="productFreeShipping">
+              <option value="false">Con costo de envío</option>
+              <option value="true">Envío gratis</option>
+            </select>
+          </label>
+
           <button class="primary-btn" type="submit">Guardar producto</button>
           <button class="ghost-btn" type="button" onclick="resetForm()">Limpiar formulario</button>
         </form>
@@ -812,9 +822,11 @@
   <script>
     const STORE_SETTINGS = {
       storeName: "SPORTIVA",
-      whatsappNumber: "5493510000000",
+      whatsappNumber: "5493512007667",
       instagramUrl: "https://instagram.com/",
-      adminPassword: "admin123"
+      mercadoPagoUrl: "https://link.mercadopago.com.ar/",
+      adminPassword: "admin123",
+      freeShippingDefault: false
     };
 
     const defaultProducts = [
@@ -854,6 +866,7 @@
         ],
         featured: true,
         active: true,
+        freeShipping: true,
         createdAt: Date.now()
       },
       {
@@ -871,7 +884,7 @@
           {id:crypto.randomUUID(),name:"Celeste y blanca",hex:"#79b9e8",stock:8,image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"},
           {id:crypto.randomUUID(),name:"Negra",hex:"#16181c",stock:4,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85"}
         ],
-        featured:true,active:true,createdAt:Date.now()-4000
+        featured:true,active:true,freeShipping:false,createdAt:Date.now()-4000
       },
       {
         id: crypto.randomUUID(),
@@ -888,7 +901,7 @@
           {id:crypto.randomUUID(),name:"Negro",hex:"#111318",stock:10,image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=85"},
           {id:crypto.randomUUID(),name:"Gris",hex:"#7b818a",stock:6,image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"}
         ],
-        featured:true,active:true,createdAt:Date.now()-3000
+        featured:true,active:true,freeShipping:false,createdAt:Date.now()-3000
       },
       {
         id: crypto.randomUUID(),
@@ -905,7 +918,7 @@
           {id:crypto.randomUUID(),name:"Gris",hex:"#90949b",stock:5,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85"},
           {id:crypto.randomUUID(),name:"Negro",hex:"#121316",stock:3,image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=85"}
         ],
-        featured:false,active:true,createdAt:Date.now()-2000
+        featured:false,active:true,freeShipping:false,createdAt:Date.now()-2000
       },
       {
         id: crypto.randomUUID(),
@@ -922,7 +935,7 @@
           {id:crypto.randomUUID(),name:"Blanco",hex:"#f4f4f4",stock:16,image:"https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&w=1000&q=85"},
           {id:crypto.randomUUID(),name:"Amarillo",hex:"#f0df39",stock:7,image:"https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=1000&q=85"}
         ],
-        featured:true,active:true,createdAt:Date.now()-1000
+        featured:true,active:true,freeShipping:false,createdAt:Date.now()-1000
       }
     ];
 
@@ -961,6 +974,7 @@
         ],
         featured:true,
         active:true,
+        freeShipping:true,
         createdAt:Date.now()
       });
       saveProducts();
@@ -1059,7 +1073,8 @@
               <div class="product-meta">${escapeHtml(p.category)} · ${escapeHtml(p.team)}</div>
               <h3 class="product-title">${escapeHtml(p.name)}</h3>
               <div class="product-price"><span>${formatPrice(p.price)}</span>${p.oldPrice?`<span class="old-price">${formatPrice(p.oldPrice)}</span>`:""}</div>
-              <div class="installments">3 pagos de ${formatPrice(p.price/3)}</div>
+              <div class="installments">3 pagos de ${formatPrice(p.price/3)} con Mercado Pago</div>
+              ${p.freeShipping?`<div class="stock-note" style="color:var(--success)">Envío gratis</div>`:""}
               ${stock<=5?`<div class="stock-note">Últimas ${stock} unidades</div>`:""}
               <div class="product-actions">
                 <button class="primary-btn" onclick="openProduct('${p.id}')">Ver producto</button>
@@ -1110,7 +1125,8 @@
               <div class="product-meta">${escapeHtml(p.category)} · ${escapeHtml(p.team)}</div>
               <h3 class="product-title">${escapeHtml(p.name)}</h3>
               <div class="product-price"><span>${formatPrice(p.price)}</span>${p.oldPrice?`<span class="old-price">${formatPrice(p.oldPrice)}</span>`:""}</div>
-              <div class="installments">3 pagos de ${formatPrice(p.price/3)}</div>
+              <div class="installments">3 pagos de ${formatPrice(p.price/3)} con Mercado Pago</div>
+              ${p.freeShipping?`<div class="stock-note" style="color:var(--success)">Envío gratis</div>`:""}
               ${stock<=5?`<div class="stock-note">Últimas ${stock} unidades</div>`:""}
               <div class="swatches">
                 ${(p.variants||[]).slice(0,6).map(v=>`<button class="swatch" title="${escapeHtml(v.name)}" style="background:${v.hex||'#ddd'}" onclick="event.stopPropagation();changeCardImage('${p.id}','${v.id}')"></button>`).join("")}
@@ -1187,9 +1203,14 @@
             <div class="detail-benefits">
               <span>${stock>0?`${stock} unidades disponibles en ${escapeHtml(variant.name)}`:"Sin stock en este color"}</span>
               <span>Confirmación del pedido por WhatsApp</span>
-              <span>Cambio de talle sujeto a disponibilidad</span>
+              <span>Revisá la referencia de talles antes de confirmar</span>
+              <span>${p.freeShipping?"Este producto tiene envío gratis":"El costo de envío se confirma según el código postal"}</span>
             </div>
 
+            <label style="display:flex;grid-template-columns:auto 1fr;align-items:start;gap:9px;margin:14px 0;font-size:12px">
+              <input id="sizeReferenceCheck" type="checkbox" style="width:18px;min-height:18px;margin-top:1px">
+              <span>Revisé la referencia de talles y confirmo que elegí el talle correcto.</span>
+            </label>
             <button class="primary-btn full" ${stock<=0?"disabled":""} onclick="addSelectedProduct()">${stock>0?"Agregar al carrito":"Color sin stock"}</button>
           </div>
         </div>
@@ -1207,6 +1228,11 @@
     }
 
     function addSelectedProduct(){
+      const check=document.getElementById("sizeReferenceCheck");
+      if(check && !check.checked){
+        showToast("Revisá y confirmá la referencia de talles.");
+        return;
+      }
       addToCart(selectedProductId,selectedVariantId,selectedSize);
       closeModal("productModal");
     }
@@ -1244,6 +1270,13 @@
         </div>`;
       }).join("");
       document.getElementById("cartTotal").textContent=formatPrice(total);
+      const allFree=cart.length>0 && cart.every(i=>{
+        const p=products.find(x=>x.id===i.productId);
+        return Boolean(p?.freeShipping);
+      });
+      document.getElementById("cartShippingNote").textContent=allFree
+        ?"Tu pedido tiene envío gratis."
+        :"El costo de envío se confirma según el código postal. Algunos productos pueden tener envío gratis.";
     }
 
     function changeQty(productId,variantId,size,delta){
@@ -1271,6 +1304,21 @@
       document.getElementById("overlay").classList.remove("show");document.getElementById("cartDrawer").classList.remove("show");document.body.classList.remove("locked");
     }
 
+
+    function checkoutMercadoPago(){
+      if(!cart.length){
+        showToast("El carrito está vacío.");
+        return;
+      }
+
+      if(!STORE_SETTINGS.mercadoPagoUrl || STORE_SETTINGS.mercadoPagoUrl==="https://link.mercadopago.com.ar/"){
+        showToast("Todavía falta configurar el enlace de Mercado Pago.");
+        return;
+      }
+
+      window.open(STORE_SETTINGS.mercadoPagoUrl,"_blank");
+    }
+
     function checkoutWhatsapp(){
       if(!cart.length){showToast("El carrito está vacío.");return}
       let total=0;
@@ -1285,7 +1333,7 @@
     }
 
     function openDirectWhatsapp(){
-      window.open(`https://wa.me/${STORE_SETTINGS.whatsappNumber}?text=${encodeURIComponent("Hola, quiero consultar por los productos de Sportiva.")}`,"_blank");
+      window.open(`https://wa.me/${STORE_SETTINGS.whatsappNumber}?text=${encodeURIComponent("Hola, necesito atención al cliente de Sportiva.")}`,"_blank");
     }
 
     function openModal(id){document.getElementById(id).classList.add("show");document.body.classList.add("locked")}
@@ -1365,6 +1413,7 @@
         variants:editingVariants.map(v=>({...v,name:v.name.trim(),stock:Number(v.stock||0)})),
         featured:document.getElementById("productFeatured").value==="true",
         active:document.getElementById("productActive").value==="true",
+        freeShipping:document.getElementById("productFreeShipping").value==="true",
         createdAt:old?.createdAt||Date.now()
       };
 
@@ -1387,7 +1436,7 @@
       box.innerHTML=products.map(p=>`
         <div class="admin-product">
           <img src="${firstImage(p)}" alt="${escapeHtml(p.name)}">
-          <div><h4>${escapeHtml(p.name)}</h4><p>${escapeHtml(p.team)} · ${formatPrice(p.price)} · ${p.variants.length} colores</p><p>${totalStock(p)} unidades · ${p.active?"Publicado":"Oculto"}</p></div>
+          <div><h4>${escapeHtml(p.name)}</h4><p>${escapeHtml(p.team)} · ${formatPrice(p.price)} · ${p.variants.length} colores</p><p>${totalStock(p)} unidades · ${p.active?"Publicado":"Oculto"} · ${p.freeShipping?"Envío gratis":"Envío con costo"}</p></div>
           <div class="admin-actions"><button class="ghost-btn" onclick="editProduct('${p.id}')">Editar</button><button class="danger-btn" onclick="deleteProduct('${p.id}')">Eliminar</button></div>
         </div>
       `).join("");
@@ -1408,6 +1457,7 @@
       document.getElementById("productDescription").value=p.description||"";
       document.getElementById("productFeatured").value=String(p.featured);
       document.getElementById("productActive").value=String(p.active);
+      document.getElementById("productFreeShipping").value=String(Boolean(p.freeShipping));
       editingVariants=JSON.parse(JSON.stringify(p.variants||[]));
       if(!editingVariants.length)addVariantRow();else renderVariantBuilder();
       window.scrollTo({top:0,behavior:"smooth"});
@@ -1435,7 +1485,7 @@
 
     document.getElementById("brandName").textContent=STORE_SETTINGS.storeName;
     document.getElementById("footerWhatsapp").href=`https://wa.me/${STORE_SETTINGS.whatsappNumber}`;
-    document.getElementById("footerHelpWhatsapp").href=`https://wa.me/${STORE_SETTINGS.whatsappNumber}?text=${encodeURIComponent("Hola, quiero consultar por cambios o envíos.")}`;
+    document.getElementById("footerHelpWhatsapp").href=`https://wa.me/${STORE_SETTINGS.whatsappNumber}?text=${encodeURIComponent("Hola, necesito atención al cliente.")}`;
     document.getElementById("instagramLink").href=STORE_SETTINGS.instagramUrl;
     ensureMysteryBox();
     saveProducts();
