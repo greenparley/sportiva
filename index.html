@@ -182,14 +182,18 @@
       align-items:flex-end;
       color:white;
       background:
-        linear-gradient(90deg,rgba(8,10,13,.92) 0%,rgba(8,10,13,.64) 38%,rgba(8,10,13,.18) 100%),
+        linear-gradient(90deg,rgba(8,10,13,.94) 0%,rgba(8,10,13,.62) 36%,rgba(8,10,13,.20) 100%),
         url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=88") left center/33.5% 100% no-repeat,
         url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=88") center/33.5% 100% no-repeat,
         url("https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=88") right center/33.5% 100% no-repeat;
       background-color:#111318;
       box-shadow:var(--shadow);
     }
-    .hero-content{max-width:720px;padding:48px}
+    .hero-content{
+      max-width:760px;
+      padding:48px;
+      width:100%;
+    }
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -208,15 +212,36 @@
       font-size:clamp(42px,7vw,78px);
       line-height:.95;
       letter-spacing:-.06em;
+      text-shadow:0 4px 28px rgba(0,0,0,.48);
     }
     .hero p{
       max-width:610px;
       margin:20px 0 26px;
-      color:rgba(255,255,255,.8);
+      color:rgba(255,255,255,.88);
       font-size:17px;
+      text-shadow:0 2px 16px rgba(0,0,0,.45);
     }
     .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
     .hero .ghost-btn{background:rgba(255,255,255,.13);color:#fff}
+    .hero-feature-chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .hero-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:38px;
+      padding:0 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      font-size:12px;
+      font-weight:850;
+    }
 
     .trust-strip{
       display:grid;
@@ -518,9 +543,24 @@
 
     @media(max-width:700px){
       .header-inner{grid-template-columns:1fr auto}
-      .hero-card{min-height:530px}
-      .hero-content{padding:27px}
-      .hero h1{font-size:49px}
+      .hero-card{
+        min-height:620px;
+        background:
+          linear-gradient(180deg,rgba(8,10,13,.18) 0%,rgba(8,10,13,.10) 28%,rgba(8,10,13,.72) 64%,rgba(8,10,13,.95) 100%),
+          url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=88") center top/cover no-repeat !important;
+      }
+      .hero-content{
+        padding:18px;
+        max-width:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+      }
+      .hero h1{font-size:42px}
+      .hero p{font-size:15px;margin:16px 0 20px}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .hero-feature-chips{gap:8px}
+      .hero-chip{font-size:11px;min-height:34px;padding:0 11px}
       .trust-strip,.product-grid,.category-grid,.catalog-toolbar{grid-template-columns:1fr}
       .home-featured .product-grid{
         display:flex;
@@ -589,6 +629,11 @@
             <div class="hero-actions">
               <button class="secondary-btn" onclick="showView('catalog')">Ver catálogo</button>
               <button class="ghost-btn" onclick="openDirectWhatsapp()">Atención al cliente</button>
+            </div>
+            <div class="hero-feature-chips">
+              <span class="hero-chip">⚡ Nuevos ingresos</span>
+              <span class="hero-chip">💳 Mercado Pago</span>
+              <span class="hero-chip">🚚 Envíos a todo el país</span>
             </div>
           </div>
         </div>
